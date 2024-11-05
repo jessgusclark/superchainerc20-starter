@@ -7,14 +7,11 @@ import { useAccount } from "wagmi"
 import { truncateDecimals } from "@/lib/truncateDecimals"
 import { Copy } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { truncateAddress } from "@/lib/utils"
 
 export const WalletBalance = () => {
   const { address } = useAccount()
   const { toast } = useToast()
-
-  const truncateAddress = (address: string) => {
-    return `${address.slice(0, 8)}...${address.slice(-4)}`
-  }
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text)
