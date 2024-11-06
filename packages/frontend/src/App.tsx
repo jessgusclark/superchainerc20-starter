@@ -11,6 +11,7 @@ import { TokenAggregateSupply } from "@/components/TokenAggregateSupply";
 import { useStartIndexer } from "@/hooks/useIndexer";
 import { Button } from "@/components/ui/button";
 import { RecentActivity } from "@/components/RecentActivity";
+import { AccountBalances } from "@/components/AccountBalances";
 
 const IndexerStarter = () => {
   const indexer = useStartIndexer();
@@ -54,6 +55,9 @@ function App() {
           <div className="grid gap-4 lg:grid-cols-3">
             {/* Left Column - Tools */}
             <div className="lg:col-span-2 space-y-6">
+              <Card>
+                <AccountBalances />
+              </Card>
               <Card>
                 <Tabs defaultValue="faucet" className="w-full">
                   <div className="px-6 pt-6">
