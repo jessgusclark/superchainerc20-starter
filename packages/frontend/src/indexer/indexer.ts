@@ -16,7 +16,7 @@ interface BalanceMap {
   [address: string]: bigint
 }
 
-interface ChainBalanceMap {
+export interface ChainBalanceMap {
   [chainId: number]: BalanceMap
 }
 
