@@ -31,24 +31,28 @@ export const AccountBalances = () => {
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-2xl font-semibold">All Balances</h2>
       </div>
-      <div className="table-heading flex justify-between">
-        <div>Address</div>
-        {chains.map(chainId => <div>Chain {chainId}</div>)}
+
+      <div className={`grid grid-cols-3 gap-4 p-4`}>
+        <div className="bg-gray-200 pt-2 pb-2 pl-4 rounded">Address</div>
+        {chains.map((item, index) => (
+          <div key={index} className="bg-gray-200 pt-2 pb-2 pr-4 rounded text-right">Chain {item}</div>
+        ))}
+        {addresses.map((address: string) => (
+          <>
+            <div className="truncate">{address}</div>
+            {chains.map((chainId: string) =>
+              <div className="text-right">
+                {
+                  balances[Number(chainId)][address]
+                  ? formatUnits(balances[Number(chainId)][address], 18)
+                  : '0'
+                }
+                {' TSU'}
+              </div>
+            )}
+          </>
+        ))}
       </div>
-      {addresses.map((address: string) => (
-        <div className="flex justify-between text-muted-foreground">
-          <div className="font-medium font-mono flex">{truncateAddress(address)}</div>
-          {chains.map((chainId: string) =>
-            <div className="font-medium text-black">
-              {balances[Number(chainId)][address]
-              ? formatUnits(balances[Number(chainId)][address], 18)
-              : '0'}
-              {' '}
-              TSU
-            </div>
-          )}
-        </div>
-      ))}
     </Card>
   )
 }
